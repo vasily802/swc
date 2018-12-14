@@ -12,13 +12,10 @@ object Cat {
     }
   }
 
-  implicit val eqCat: Eq[Cat] = {
-    new Eq[Cat] {
-      def eqv(x: Cat, y: Cat): Boolean = {
-        x.name === y.name &&
-        x.age === y.age &&
-        x.color === y.color
-      }
-    }
+  implicit val eqCat: Eq[Cat] = Eq.instance[Cat] {
+    (x: Cat, y: Cat) =>
+      x.name === y.name &&
+      x.age === y.age &&
+      x.color === y.color
   }
 }

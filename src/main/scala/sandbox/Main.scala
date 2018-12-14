@@ -69,5 +69,13 @@ object Main {
       cat1 === cat1
     )
 
+    println(
+      optionCat1 =!= optionCat2
+    )
+
+    println(
+      optionCat1 === optionCat1
+    )
+
   }
 }

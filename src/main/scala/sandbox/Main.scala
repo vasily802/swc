@@ -2,11 +2,18 @@ package com.hautelook.swc
 
 import JsonWriter._
 import Printable._
-import cats._
+import sandbox.{Monoid => SandboxMonoid}
+import SandboxMonoid._
+import sandbox.AssociativeLaw._
+import sandbox.IdentityLaw._
 import cats.implicits._
 
 object Main {
   def main(args: Array[String]): Unit = {
+    println
+    /** Chapter I **/
+    println(s"/** Chapter I **/")
+    println
     val somePersonDave: Option[Person] = Some(Person("Dave", "dave@example.com"))
     val personMike = Person("Mike", "mike@example.com")
 
@@ -77,5 +84,24 @@ object Main {
       optionCat1 === optionCat1
     )
 
+    println
+    println(s"/** Chapter II **/")
+    println
+
+    booleanAndMonoid.checkAssociativeLaw
+    booleanOrMonoid.checkAssociativeLaw
+    booleanXorMonoid.checkAssociativeLaw
+    booleanNandMonoid.checkAssociativeLaw
+    booleanNorMonoid.checkAssociativeLaw
+    booleanNxorMonoid.checkAssociativeLaw
+
+    booleanAndMonoid.checkIdentityLaw
+    booleanOrMonoid.checkIdentityLaw
+    booleanXorMonoid.checkIdentityLaw
+    booleanNandMonoid.checkIdentityLaw
+    booleanNorMonoid.checkIdentityLaw
+    booleanNxorMonoid.checkIdentityLaw
+
+    /** End of def main */
   }
 }

@@ -103,25 +103,25 @@ object Main {
       booleanNorMonoid.checkAssociativeLaw
       booleanNxorMonoid.checkAssociativeLaw
 
-      booleanAndMonoid.checkIdentityLaw
-      booleanOrMonoid.checkIdentityLaw
-      booleanXorMonoid.checkIdentityLaw
-      booleanNandMonoid.checkIdentityLaw
-      booleanNorMonoid.checkIdentityLaw
-      booleanNxorMonoid.checkIdentityLaw
+      booleanAndMonoid.checkIdentityLaw(false)
+      booleanOrMonoid.checkIdentityLaw(false)
+      booleanXorMonoid.checkIdentityLaw(false)
+      booleanNandMonoid.checkIdentityLaw(false)
+      booleanNorMonoid.checkIdentityLaw(false)
+      booleanNxorMonoid.checkIdentityLaw(false)
       // TODO: If a law does not hold for a monoid, is there a way to prevent compilation?
 
       println
       println(s"/** Exercise 2.4 **/")
       println
       // TODO: Is there a better way, without using asInstanceOf?
-      setUnionMonoid[Int].checkIdentityLaw(setMonoidIdentityLaw.asInstanceOf[IdentityLaw[NamedMonoid, Set[Int]]])
+      setUnionMonoid[Int].checkIdentityLaw(Set(1))
       setUnionMonoid[Int].checkAssociativeLaw(setMonoidAssociativeLaw.asInstanceOf[AssociativeLaw[NamedMonoid, Set[Int]]])
 
-      setSymDiffMonoid[Int].checkIdentityLaw(setMonoidIdentityLaw.asInstanceOf[IdentityLaw[NamedMonoid, Set[Int]]])
+      setSymDiffMonoid[Int].checkIdentityLaw(Set(1))
       setSymDiffMonoid[Int].checkAssociativeLaw(setMonoidAssociativeLaw.asInstanceOf[AssociativeLaw[NamedMonoid, Set[Int]]])
 
-      setDiffMonoid[Int].checkIdentityLaw(setMonoidIdentityLaw.asInstanceOf[IdentityLaw[NamedMonoid, Set[Int]]])
+      setDiffMonoid[Int].checkIdentityLaw(Set(1))
       setDiffMonoid[Int].checkAssociativeLaw(setMonoidAssociativeLaw.asInstanceOf[AssociativeLaw[NamedMonoid, Set[Int]]])
 
       val addResult1 = SuperAdder.add(List(Some(1), None))

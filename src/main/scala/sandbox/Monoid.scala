@@ -64,6 +64,16 @@ object Monoid {
     def getName: String = "Boolean-Nxor-Monoid"
   }
 
+  implicit val intAddMonoid: NamedMonoid[Int] = new NamedMonoid[Int] {
+    def empty: Int = 0
+
+    def combine(x: Int, y: Int): Int = x + y
+
+    def getName: String = "intAddMonoid"
+  }
+
+
+
   implicit def setUnionMonoid[A]: NamedMonoid[Set[A]] = new NamedMonoid[Set[A]] {
     def empty: Set[A] = Set.empty[A]
 

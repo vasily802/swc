@@ -124,8 +124,18 @@ object Main {
       setDiffMonoid[Int].checkIdentityLaw(setMonoidIdentityLaw.asInstanceOf[IdentityLaw[NamedMonoid, Set[Int]]])
       setDiffMonoid[Int].checkAssociativeLaw(setMonoidAssociativeLaw.asInstanceOf[AssociativeLaw[NamedMonoid, Set[Int]]])
 
-      val addResult = SuperAdder.add(List(Some(1), None))
-      println(addResult)
+      val addResult1 = SuperAdder.add(List(Some(1), None))
+      println(addResult1)
+
+      val addResult2 = SuperAdder.add(List[Option[Int]](Some(1), Some(1)))
+      println(addResult2)
+
+      import sandbox.Order
+      import SuperAdder._
+      val o1 = Order(1,1)
+      val o2 = Order(2,2)
+      val ot = SuperAdder.add(List(o1, o2))
+      println(ot)
     }
 
     chapter2

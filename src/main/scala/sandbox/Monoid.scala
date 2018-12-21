@@ -63,4 +63,37 @@ object Monoid {
 
     def getName: String = "Boolean-Nxor-Monoid"
   }
+
+  implicit def setUnionMonoid[A]: NamedMonoid[Set[A]] = new NamedMonoid[Set[A]] {
+    def empty: Set[A] = Set.empty[A]
+
+    def combine(x: Set[A], y: Set[A]): Set[A] = x ++ y
+
+    def getName: String = "Set-Union-Monoid"
+  }
+
+  implicit def setSymDiffMonoid[A]: NamedMonoid[Set[A]] =
+    new NamedMonoid[Set[A]] {
+      def combine(a: Set[A], b: Set[A]): Set[A] =
+        (a diff b) union (b diff a)
+      def empty: Set[A] = Set.empty[A]
+
+      def getName: String = "Set-SymDiff-Monoid"
+    }
+
+  implicit def setDiffMonoid[A]: NamedMonoid[Set[A]] =
+    new NamedMonoid[Set[A]] {
+      def combine(a: Set[A], b: Set[A]): Set[A] =
+        a -- b
+      def empty: Set[A] = Set.empty[A]
+
+      def getName: String = "Set-Diff-Monoid"
+    }
+  // TODO: What is "Set complement"?
+
+  implicit def setIntersectionSemigroup[A]: Semigroup[Set[A]] =
+    new Semigroup[Set[A]] {
+      def combine(a: Set[A], b: Set[A]) =
+        a intersect b
+    }
 }

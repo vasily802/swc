@@ -35,6 +35,16 @@ object IdentityLaw {
       }
     }
 
+  implicit val setMonoidIdentityLaw: IdentityLaw[NamedMonoid, Set[_]] =
+    new IdentityLaw[NamedMonoid, Set[_]] {
+      def checkIdentityLaw(m: NamedMonoid[Set[_]]): Boolean = {
+        val x: Set[_] = Set(1)
+        val holds: Boolean = identityLaw[Set[_]](x)(m)
+        println(s"For ${m.getName} with value $x identity law holds $holds")
+        holds
+      }
+    }
+
   implicit class IdentityLawOps[A[_], B](m: A[B]) {
     def checkIdentityLaw(implicit l: IdentityLaw[A, B]): Boolean =
       l.checkIdentityLaw(m)

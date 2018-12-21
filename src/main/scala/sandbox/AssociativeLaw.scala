@@ -37,6 +37,18 @@ object AssociativeLaw {
       }
     }
 
+  implicit val setMonoidAssociativeLaw: AssociativeLaw[NamedMonoid, Set[_]] =
+    new AssociativeLaw[NamedMonoid, Set[_]] {
+      override def checkAssociativeLaw(m: NamedMonoid[Set[_]]): Boolean = {
+        val x: Set[_] = Set(1, 2)
+        val y: Set[_] = Set(2, 3)
+        val z: Set[_] = Set(3, 4)
+        val holds: Boolean = associativeLaw[Set[_]](x, y, z)(m)
+        println(s"For ${m.getName} with values $x, $y, $z associative law holds $holds")
+        holds
+      }
+    }
+
   implicit class AssociativeLawOps[A[_], B](m: A[B]) {
     def checkAssociativeLaw(implicit l: AssociativeLaw[A, B]): Boolean =
       l.checkAssociativeLaw(m)

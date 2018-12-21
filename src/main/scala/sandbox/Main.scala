@@ -2,7 +2,7 @@ package com.hautelook.swc
 
 import JsonWriter._
 import Printable._
-import sandbox.{Monoid => SandboxMonoid}
+import sandbox.{AssociativeLaw, IdentityLaw, NamedMonoid, Monoid => SandboxMonoid}
 import SandboxMonoid._
 import sandbox.AssociativeLaw._
 import sandbox.IdentityLaw._
@@ -87,7 +87,9 @@ object Main {
     println
     println(s"/** Chapter II **/")
     println
-
+    println
+    println(s"/** Exercise 2.3 **/")
+    println
     booleanAndMonoid.checkAssociativeLaw
     booleanOrMonoid.checkAssociativeLaw
     booleanXorMonoid.checkAssociativeLaw
@@ -101,7 +103,19 @@ object Main {
     booleanNandMonoid.checkIdentityLaw
     booleanNorMonoid.checkIdentityLaw
     booleanNxorMonoid.checkIdentityLaw
+    // Todo: if a law does not hold for a monoid, is there a way to prevent compilation?
 
+    println
+    println(s"/** Exercise 2.4 **/")
+    println
+    setUnionMonoid[Int].checkIdentityLaw(setMonoidIdentityLaw.asInstanceOf[IdentityLaw[NamedMonoid, Set[Int]]])
+    setUnionMonoid[Int].checkAssociativeLaw(setMonoidAssociativeLaw.asInstanceOf[AssociativeLaw[NamedMonoid, Set[Int]]])
+
+    setSymDiffMonoid[Int].checkIdentityLaw(setMonoidIdentityLaw.asInstanceOf[IdentityLaw[NamedMonoid, Set[Int]]])
+    setSymDiffMonoid[Int].checkAssociativeLaw(setMonoidAssociativeLaw.asInstanceOf[AssociativeLaw[NamedMonoid, Set[Int]]])
+
+    setDiffMonoid[Int].checkIdentityLaw(setMonoidIdentityLaw.asInstanceOf[IdentityLaw[NamedMonoid, Set[Int]]])
+    setDiffMonoid[Int].checkAssociativeLaw(setMonoidAssociativeLaw.asInstanceOf[AssociativeLaw[NamedMonoid, Set[Int]]])
     /** End of def main */
   }
 }

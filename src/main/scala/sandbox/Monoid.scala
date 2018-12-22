@@ -99,7 +99,6 @@ object Monoid {
 
       def getName: String = "Set-Diff-Monoid"
     }
-  // TODO: What is "Set complement"?
 
   implicit def setIntersectionSemigroup[A]: Semigroup[Set[A]] =
     new Semigroup[Set[A]] {

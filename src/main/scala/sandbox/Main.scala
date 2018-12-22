@@ -109,12 +109,11 @@ object Main {
       booleanNandMonoid.checkIdentityLaw(false)
       booleanNorMonoid.checkIdentityLaw(false)
       booleanNxorMonoid.checkIdentityLaw(false)
-      // TODO: If a law does not hold for a monoid, is there a way to prevent compilation?
 
       println
       println(s"/** Exercise 2.4 **/")
       println
-      // TODO: Is there a better way, without using asInstanceOf?
+
       setUnionMonoid[Int].checkIdentityLaw(Set(1))
       setUnionMonoid[Int].checkAssociativeLaw(setMonoidAssociativeLaw.asInstanceOf[AssociativeLaw[NamedMonoid, Set[Int]]])
 

@@ -12,8 +12,20 @@ object SuperAdder {
         x.quantity |+| y.quantity
       )
 
-    def empty: Order = Order(CatsMonoid[Double].empty, CatsMonoid[Double].empty) // TODO: how does it know which monoid on Double?
+    def empty: Order = Order(CatsMonoid[Double].empty, CatsMonoid[Double].empty)
   }
 }
 
 case class Order(totalCost: Double, quantity: Double)
+
+// if we assume the regular monoid is "additive"
+case class Mult[A](value: A) extends AnyVal
+
+object Mult {
+  implicit val intMult: Monoid[Mult[Int]] =
+    new Monoid[Mult[Int]] {
+      def empty: Mult[Int] = Mult(1)
+      def combine(x: Mult[Int], y: Mult[Int]): Mult[Int] = Mult(x.value * y.value)
+    }
+
+}

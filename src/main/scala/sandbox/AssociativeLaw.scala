@@ -1,6 +1,6 @@
 package sandbox
 
-trait AssociativeLaw[A[_], B] { // TODO: context bound syntax?
+trait AssociativeLaw[A[_], B] {
   def checkAssociativeLaw(m: A[B]): Boolean
 }
 

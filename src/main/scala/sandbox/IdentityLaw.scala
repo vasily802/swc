@@ -1,7 +1,13 @@
 package sandbox
 
-trait IdentityLaw[A[_], B] {
-  def checkIdentityLaw(m: A[B], testValue: B): Boolean
+class Foo(val s: String)
+object Foo {
+  new Foo("hi").s
+}
+
+
+abstract class IdentityLaw[A[_], B](implicit val m: A[B]) {
+  def checkIdentityLaw(testValue: B): Boolean
 }
 
 object IdentityLaw {
@@ -13,7 +19,7 @@ object IdentityLaw {
 
   implicit val booleanMonoidIdentityLaw: IdentityLaw[NamedMonoid, Boolean] =
     new IdentityLaw[NamedMonoid, Boolean] {
-      def checkIdentityLaw(m: NamedMonoid[Boolean], testValue: Boolean): Boolean = {
+      def checkIdentityLaw(testValue: Boolean): Boolean = {
         val listTrueFalse: List[Boolean] = List(true, false)
         val checks: List[Boolean] = for {
           x <- listTrueFalse
@@ -35,10 +41,10 @@ object IdentityLaw {
       }
     }
 
-  implicit def setMonoidIdentityLaw[A : Monoid]: IdentityLaw[NamedMonoid, Set[A]] =
+  implicit def setMonoidIdentityLaw[A : Monoid]: IdentityLaw[NamedMonoid, Set[A]] = //TODO: why can't we make it val
     new IdentityLaw[NamedMonoid, Set[A]] {
-      def checkIdentityLaw(m: NamedMonoid[Set[A]], testValue: Set[A]): Boolean = {
-        val holds: Boolean = identityLaw[Set[A]](testValue)(m)
+      def checkIdentityLaw(testValue: Set[A]): Boolean = {
+        val holds: Boolean = identityLaw[Set[A]](testValue)
         println(s"For ${m.getName} with value $testValue identity law holds $holds")
         holds
       }
@@ -46,6 +52,6 @@ object IdentityLaw {
 
   implicit class IdentityLawOps[A[_], B](m: A[B]) {
     def checkIdentityLaw(testValue: B)(implicit l: IdentityLaw[A, B]): Boolean =
-      l.checkIdentityLaw(m, testValue)
+      l.checkIdentityLaw(testValue)
   }
 }

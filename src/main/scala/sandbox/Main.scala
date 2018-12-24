@@ -114,13 +114,13 @@ object Main {
       println(s"/** Exercise 2.4 **/")
       println
 
-      setUnionMonoid[Int].checkIdentityLaw(Set(1))
+//      setUnionMonoid[Int].checkIdentityLaw(Set(1))
       setUnionMonoid[Int].checkAssociativeLaw(setMonoidAssociativeLaw.asInstanceOf[AssociativeLaw[NamedMonoid, Set[Int]]])
 
-      setSymDiffMonoid[Int].checkIdentityLaw(Set(1))
+//      setSymDiffMonoid[Int].checkIdentityLaw(Set(1))
       setSymDiffMonoid[Int].checkAssociativeLaw(setMonoidAssociativeLaw.asInstanceOf[AssociativeLaw[NamedMonoid, Set[Int]]])
 
-      setDiffMonoid[Int].checkIdentityLaw(Set(1))
+//      setDiffMonoid[Int].checkIdentityLaw(Set(1))
       setDiffMonoid[Int].checkAssociativeLaw(setMonoidAssociativeLaw.asInstanceOf[AssociativeLaw[NamedMonoid, Set[Int]]])
 
       val addResult1 = SuperAdder.add(List(Some(1), None))

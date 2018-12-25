@@ -114,7 +114,7 @@ object Main {
       println(s"/** Exercise 2.4 **/")
       println
 
-//      setUnionMonoid[Int].checkIdentityLaw(Set(1))
+//      setUnionMonoid[Int].checkIdentityLawHigher(Set(1))
       setUnionMonoid[Int].checkAssociativeLaw(setMonoidAssociativeLaw.asInstanceOf[AssociativeLaw[NamedMonoid, Set[Int]]])
 
 //      setSymDiffMonoid[Int].checkIdentityLaw(Set(1))
@@ -139,6 +139,11 @@ object Main {
 
     chapter2
 
+    def chapter3(): Unit = {
+
+    }
+
+    chapter3
     /** End of def main */
   }
 }

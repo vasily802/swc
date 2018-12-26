@@ -140,7 +140,20 @@ object Main {
     chapter2
 
     def chapter3(): Unit = {
+      import sandbox.{Tree=> SandboxTree}
 
+      val tree = SandboxTree.branch(
+        SandboxTree.branch(
+          SandboxTree.leaf(1),SandboxTree.leaf(1)
+        ),
+        SandboxTree.branch(
+          SandboxTree.leaf(1),SandboxTree.leaf(1)
+        )
+      )
+
+      val mappedTree = tree.map(_ * 2)
+
+      println(mappedTree)
     }
 
     chapter3

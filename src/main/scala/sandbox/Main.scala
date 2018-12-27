@@ -155,6 +155,20 @@ object Main {
       val mappedTree = tree.map(_ * 2)
 
       println(mappedTree)
+
+      import sandbox.Codec._
+
+      val cat: Cat = "Fussy|22|red".decode[Cat]
+
+      println(cat)
+
+      println(cat.encode)
+
+      val x: Double = 123.0
+      val xs = x.encode
+      println(xs)
+      println(xs.decode[String])
+
     }
 
     chapter3

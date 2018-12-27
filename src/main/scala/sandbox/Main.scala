@@ -42,6 +42,7 @@ object Main {
 
       // Define a cat:
       val cat = Cat("Fuzzy", 12, "black")
+      val catMore = Cat("Fuzzy1", 121, "black1")
 
       // Print the cat!
       println(cat.format)
@@ -50,7 +51,7 @@ object Main {
 
       println(z)
 
-      println(cat.show)
+      println(catMore.show)
 
       println(
         (Some(1): Option[Int]) === (None: Option[Int])

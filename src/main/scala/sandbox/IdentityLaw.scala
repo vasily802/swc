@@ -21,7 +21,7 @@ object IdentityLaw {
   }
 
   implicit class IdentityLawOpsHigher[A[_], T](m: Monoid[A[T]]) {
-    def checkIdentityLawHigher(testValue: A[T])(implicit identityLawHigher: A[T] => Boolean): Boolean =
-      identityLawHigher(testValue)
+    def checkIdentityLawHigher(testValue: A[T]): Boolean =
+      identityLawHigher(testValue)(m)
   }
 }

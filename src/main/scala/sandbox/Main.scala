@@ -3,7 +3,7 @@ package com.hautelook.swc
 // TODO: Is there a penalty on too many/too broad imports?
 import JsonWriter._
 import Printable._
-import sandbox.{AssociativeLaw, IdentityLaw, NamedMonoid, SuperAdder, Monoid => SandboxMonoid}
+import sandbox.{AssociativeLaw, IdentityLaw, Named, NamedMonoid, SuperAdder, Monoid => SandboxMonoid}
 import SandboxMonoid._
 import sandbox.AssociativeLaw._
 import sandbox.IdentityLaw._
@@ -115,14 +115,21 @@ object Main {
       println(s"/** Exercise 2.4 **/")
       println
 
-//      setUnionMonoid[Int].checkIdentityLawHigher(Set(1))
-      setUnionMonoid[Int].checkAssociativeLaw(setMonoidAssociativeLaw.asInstanceOf[AssociativeLaw[NamedMonoid, Set[Int]]])
+//      implicitly[sandbox.Monoid[Smth1[Int]]]
+
+      val testValues = List(Set(1), Set(2), Set(-123)) // you can add more explicit examples
+
+      for {
+        v <- testValues
+      } setUnionMonoid[Int].checkIdentityLawHigher(Named.create[Union](v))
+
+//      setUnionMonoid[Int].checkAssociativeLaw(setMonoidAssociativeLaw.asInstanceOf[AssociativeLaw[NamedMonoid, Set[Int]]])
 
 //      setSymDiffMonoid[Int].checkIdentityLaw(Set(1))
-      setSymDiffMonoid[Int].checkAssociativeLaw(setMonoidAssociativeLaw.asInstanceOf[AssociativeLaw[NamedMonoid, Set[Int]]])
+//      setSymDiffMonoid[Int].checkAssociativeLaw(setMonoidAssociativeLaw.asInstanceOf[AssociativeLaw[NamedMonoid, Set[Int]]])
 
 //      setDiffMonoid[Int].checkIdentityLaw(Set(1))
-      setDiffMonoid[Int].checkAssociativeLaw(setMonoidAssociativeLaw.asInstanceOf[AssociativeLaw[NamedMonoid, Set[Int]]])
+//      setDiffMonoid[Int].checkAssociativeLaw(setMonoidAssociativeLaw.asInstanceOf[AssociativeLaw[NamedMonoid, Set[Int]]])
 
       val addResult1 = SuperAdder.add(List(Some(1), None))
       println(addResult1)

@@ -27,5 +27,4 @@ object Mult {
       def empty: Mult[Int] = Mult(1)
       def combine(x: Mult[Int], y: Mult[Int]): Mult[Int] = Mult(x.value * y.value)
     }
-
 }

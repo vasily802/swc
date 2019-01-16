@@ -3,10 +3,9 @@ package com.hautelook.swc
 // TODO: Is there a penalty on too many/too broad imports?
 import JsonWriter._
 import Printable._
-import sandbox.{AssociativeLaw, IdentityLaw, Named, NamedMonoid, SuperAdder, Monoid => SandboxMonoid}
+import sandbox.{SuperAdder, Monoid => SandboxMonoid}
 import SandboxMonoid._
 import sandbox.AssociativeLaw._
-import sandbox.IdentityLaw._
 import cats.implicits._
 
 object Main {
@@ -104,13 +103,6 @@ object Main {
       booleanNorMonoid.checkAssociativeLaw
       booleanNxorMonoid.checkAssociativeLaw
 
-      booleanAndMonoid.checkIdentityLaw(false)
-      booleanOrMonoid.checkIdentityLaw(false)
-      booleanXorMonoid.checkIdentityLaw(false)
-      booleanNandMonoid.checkIdentityLaw(false)
-      booleanNorMonoid.checkIdentityLaw(false)
-      booleanNxorMonoid.checkIdentityLaw(false)
-
       println
       println(s"/** Exercise 2.4 **/")
       println
@@ -119,9 +111,9 @@ object Main {
 
       val testValues = List(Set(1), Set(2), Set(-123)) // you can add more explicit examples
 
-      for {
-        v <- testValues
-      } setUnionMonoid[Int].checkIdentityLawHigher(Named.create[Union](v))
+//      for {
+//        v <- testValues
+//      } setUnionMonoid[Int].checkIdentityLaw(Named.create[SetUnion](v))
 
 //      setUnionMonoid[Int].checkAssociativeLaw(setMonoidAssociativeLaw.asInstanceOf[AssociativeLaw[NamedMonoid, Set[Int]]])
 

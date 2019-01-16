@@ -12,17 +12,6 @@ trait NamedMonoid[A] extends Monoid[A] {
   def getName: String
 }
 
-// Name is a type that isn't used at the value level: this is called a *phantom* type
-case class Named[A, Name](value: A)
-
-object Named {
-  def create[Name]: NamedBuilder[Name] = new NamedBuilder[Name]
-
-  class NamedBuilder[Name] {
-    def apply[A](a: A): Named[A, Name] = new Named(a)
-  }
-}
-
 object Monoid {
   def apply[A](implicit monoid: Monoid[A]) =
     monoid
@@ -83,25 +72,40 @@ object Monoid {
     def getName: String = "intAddMonoid"
   }
 
-  trait Union
-  trait SymDiff
+  // Name is a type that isn't used at the value level: this is called a *phantom* type
+  case class Named[A, Name](value: A)
 
-  type Smth1[A] = Named[Set[A], Union]
-  type Smth2[A] = Named[Set[A], SymDiff]
+  object Named {
+    def create[Name]: NamedBuilder[Name] = new NamedBuilder[Name]
 
-  implicit def setUnionMonoid[A]: NamedMonoid[Smth1[A]] = new NamedMonoid[Smth1[A]] {
-    def empty: Smth1[A] = Named(Set.empty[A])
+    class NamedBuilder[Name] {
+      def apply[A](a: A): Named[A, Name] = new Named(a)
+    }
+  }
 
-    def combine(x: Smth1[A], y: Smth1[A]): Smth1[A] = Named(x.value ++ y.value)
+  trait SetUnion
+  trait SetSymDiff
+  trait SetDiff
+  trait SetIntersection
+
+  type SetUnionMonoid[A] = Named[Set[A], SetUnion]
+  type SetSymDiffMonoid[A] = Named[Set[A], SetSymDiff]
+  type SetDiffMonoid[A] = Named[Set[A], SetDiff]
+  type SetIntersectionMonoid[A] = Named[Set[A], SetIntersection]
+
+  implicit def setUnionMonoid[A]: NamedMonoid[SetUnionMonoid[A]] = new NamedMonoid[SetUnionMonoid[A]] {
+    def empty: SetUnionMonoid[A] = Named(Set.empty[A])
+
+    def combine(x: SetUnionMonoid[A], y: SetUnionMonoid[A]): SetUnionMonoid[A] = Named(x.value ++ y.value)
 
     def getName: String = "Set-Union-Monoid"
   }
 
-  implicit def setSymDiffMonoid[A]: NamedMonoid[Smth2[A]] =
-    new NamedMonoid[Smth2[A]] {
-      def combine(a: Smth2[A], b: Smth2[A]): Smth2[A] =
+  implicit def setSymDiffMonoid[A]: NamedMonoid[SetSymDiffMonoid[A]] =
+    new NamedMonoid[SetSymDiffMonoid[A]] {
+      def combine(a: SetSymDiffMonoid[A], b: SetSymDiffMonoid[A]): SetSymDiffMonoid[A] =
         Named((a.value diff b.value) union (b.value diff a.value))
-      def empty: Smth2[A] = Named(Set.empty[A])
+      def empty: SetSymDiffMonoid[A] = Named(Set.empty[A])
 
       def getName: String = "Set-SymDiff-Monoid"
     }

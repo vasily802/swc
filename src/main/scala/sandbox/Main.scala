@@ -1,11 +1,8 @@
-package com.hautelook.swc
+package sandbox
 
 // TODO: Is there a penalty on too many/too broad imports?
 import JsonWriter._
 import Printable._
-import sandbox.{SuperAdder, Monoid => SandboxMonoid}
-import SandboxMonoid._
-import sandbox.AssociativeLaw._
 import cats.implicits._
 
 object Main {
@@ -96,13 +93,6 @@ object Main {
       println
       println(s"/** Exercise 2.3 **/")
       println
-      booleanAndMonoid.checkAssociativeLaw
-      booleanOrMonoid.checkAssociativeLaw
-      booleanXorMonoid.checkAssociativeLaw
-      booleanNandMonoid.checkAssociativeLaw
-      booleanNorMonoid.checkAssociativeLaw
-      booleanNxorMonoid.checkAssociativeLaw
-
       println
       println(s"/** Exercise 2.4 **/")
       println

@@ -1,4 +1,4 @@
-package com.hautelook.swc
+package sandbox
 
 // Define a very simple JSON AST
 sealed trait Json

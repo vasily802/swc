@@ -1,4 +1,4 @@
-package com.hautelook.swc
+package sandbox
 
 trait Printable[A] {
   self =>
@@ -12,7 +12,6 @@ trait Printable[A] {
 }
 
 object Printable {
-  import com.hautelook.swc.Printable.PrintableOps
 
   implicit val intPrintable: Printable[Int] =
     new Printable[Int] {

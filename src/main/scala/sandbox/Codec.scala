@@ -1,7 +1,6 @@
 package sandbox
 
-import com.hautelook.swc.Cat
-import com.hautelook.swc.Printable._
+import Printable._
 
 trait Codec[A] {
   self =>

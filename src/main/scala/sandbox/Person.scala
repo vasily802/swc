@@ -1,3 +1,3 @@
-package com.hautelook.swc
+package sandbox
 
 final case class Person(name: String, email: String)

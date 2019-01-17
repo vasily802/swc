@@ -1,4 +1,4 @@
-package com.hautelook.swc
+package sandbox
 
 import cats._
 import cats.implicits._

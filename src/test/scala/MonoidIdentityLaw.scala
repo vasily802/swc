@@ -1,8 +1,10 @@
 import sandbox.Monoid
 import sandbox.Monoid._
-import scala.language.implicitConversions
+
 import org.scalacheck.Properties
 import org.scalacheck.Prop.forAll
+
+import scala.language.implicitConversions
 
 object MonoidIdentityLaw extends Properties("Monoid identity law") {
   implicit def identityLaw[T](x: T)(m: Monoid[T]): Boolean = {
@@ -38,4 +40,9 @@ object MonoidIdentityLaw extends Properties("Monoid identity law") {
   property("booleanNxorMonoid") = forAll { a: Boolean =>
     booleanNxorMonoid.checkIdentityLaw(a)
   }
+
+//  // todo: correct way to do this
+//  property("setUnionMonoid") = forAll { a: Set[Int] =>
+//    setUnionMonoid[Int].checkIdentityLaw(a)
+//  }
 }

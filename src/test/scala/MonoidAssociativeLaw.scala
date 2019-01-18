@@ -20,10 +20,23 @@ object MonoidAssociativeLaw extends Properties("Monoid associative law") {
     booleanAndMonoid.checkAssociativeLaw(a, b, c)
   }
 
-//  booleanOrMonoid.checkAssociativeLaw
-//  booleanXorMonoid.checkAssociativeLaw
-//  booleanNandMonoid.checkAssociativeLaw
-//  booleanNorMonoid.checkAssociativeLaw
-//  booleanNxorMonoid.checkAssociativeLaw
+  property("booleanOrMonoid") = forAll { (a: Boolean, b: Boolean, c: Boolean) =>
+    booleanOrMonoid.checkAssociativeLaw(a, b, c)
+  }
 
+  property("booleanXorMonoid") = forAll { (a: Boolean, b: Boolean, c: Boolean) =>
+    booleanXorMonoid.checkAssociativeLaw(a, b, c)
+  }
+
+  property("booleanNandMonoid") = forAll { (a: Boolean, b: Boolean, c: Boolean) =>
+    booleanNandMonoid.checkAssociativeLaw(a, b, c)
+  }
+
+  property("booleanNorMonoid") = forAll { (a: Boolean, b: Boolean, c: Boolean) =>
+    booleanNorMonoid.checkAssociativeLaw(a, b, c)
+  }
+
+  property("booleanNxorMonoid") = forAll { (a: Boolean, b: Boolean, c: Boolean) =>
+    booleanNxorMonoid.checkAssociativeLaw(a, b, c)
+  }
 }
